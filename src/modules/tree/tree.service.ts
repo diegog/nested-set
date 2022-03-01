@@ -1,7 +1,8 @@
 import { query } from '../../core/db';
+import { Node } from './tree.types';
 
 class treeService {
-  static async insertNode(name: string, parentId: number): Promise<any> {
+  static async insertNode(name: string, parentId: number): Promise<string> {
     try {
       // Get parent info to determine new lft and rgt values
       const { rows: [parent] } = await query(`SELECT * FROM nodeIndex p WHERE p.nodeId = ${parentId}`);
@@ -33,7 +34,7 @@ class treeService {
     }
   }
 
-  static async changeParent(nodeId: number, newParentId: number): Promise<any> {
+  static async changeParent(nodeId: number, newParentId: number): Promise<string> {
     try {
       // Get info of node and new parent
       const { rows: [old] } = await query(`SELECT * from nodeIndex WHERE nodeId=${nodeId}`);
@@ -79,7 +80,7 @@ class treeService {
     }
   }
 
-  static async getDescendants(nodeId: number): Promise<any> {
+  static async getDescendants(nodeId: number): Promise<{ rows: Node[], count: number }> {
     try {
       // Get node index info
       const { rows: [node] } = await query(`SELECT * FROM nodeIndex WHERE nodeId = ${nodeId}`);
