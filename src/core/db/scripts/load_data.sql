@@ -121,7 +121,7 @@ COPY public.nodeindex (nodeid, lft, rgt, height) FROM stdin;
 10	4	15	3
 4	3	18	2
 1	2	25	1
-0	1	54	\N
+0	1	54	0
 22	5	14	4
 23	6	13	5
 24	7	12	6
