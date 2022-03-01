@@ -6,7 +6,7 @@ class treeService {
     try {
       // Get parent info to determine new lft and rgt values
       const { rows: [parent] } = await query(`SELECT * FROM nodeIndex p WHERE p.nodeId = ${parentId}`);
-      if (!parent) throw new Error(`Error inserting node: can't find parent with given id`);
+      if (!parent) throw new Error(`Can't find parent with given id`);
 
       const lft = parent.rgt;
       const rgt = lft + 1;
@@ -40,9 +40,9 @@ class treeService {
       const { rows: [old] } = await query(`SELECT * from nodeIndex WHERE nodeId=${nodeId}`);
       const { rows: [parent]} = await query(`SELECT * from nodeIndex WHERE nodeId=${newParentId}`);
 
-      if (!old) throw new Error(`Error changing parent: Can't find node with given id`);
-      if (!parent) throw new Error(`Error changing parent: Can't find parent with given id`);
-      if (old.height === 0) throw new Error(`Error changing parent: Can't change parent of root`);
+      if (!old) throw new Error(`Can't find node with given id`);
+      if (!parent) throw new Error(`Can't find parent with given id`);
+      if (old.height === 0) throw new Error(`Can't change parent of root`);
 
       let oldPos = old.lft;
       const width = old.rgt - old.lft + 1; // width of the subtree being moved...
@@ -84,6 +84,7 @@ class treeService {
     try {
       // Get node index info
       const { rows: [node] } = await query(`SELECT * FROM nodeIndex WHERE nodeId = ${nodeId}`);
+      if (!node) throw new Error(`Can't find node with given id`);
 
       // Get descendants
       const results = await query(`

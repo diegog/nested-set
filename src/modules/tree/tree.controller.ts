@@ -9,7 +9,7 @@ class treeController {
 
       return res.status(200).json(response);
     } catch (error) {
-      return res.status(400).json(error);
+      return res.status(400).json(error.message);
     }
   }
   
@@ -20,7 +20,7 @@ class treeController {
 
       return res.status(200).json(response);
     } catch (error) {
-      return res.status(400).json(error);
+      return res.status(400).json(error.message);
     }
   }
   
@@ -31,7 +31,7 @@ class treeController {
 
       return res.status(200).json(response);
     } catch (error) {
-      return res.status(400).json(error);
+      return res.status(400).json(error.message);
     }
   }
 }
