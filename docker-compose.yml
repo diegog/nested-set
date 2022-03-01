@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    container_name: tree_db
+    restart: unless-stopped
+    ports:
+      - ${DB_PORT}:5432
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./src/core/db/scripts/load_data.sql:/docker-entrypoint-initdb.d/load_data.sql
+  api:
+    build: .
+    container_name: tree_api
+    restart: 'no'
+    ports:
+     - ${PORT}:${PORT}
+    volumes:
+      - ./:/code
+      - /code/node_modules
+    depends_on:
+      - db
+    environment:
+      - PORT=${PORT}
+      - DB_HOST=db
+    links:
+      - db

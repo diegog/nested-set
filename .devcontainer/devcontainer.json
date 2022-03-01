@@ -1,0 +1,17 @@
+{
+  "name": "nested-set",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [
+    5432, // db port
+    3000, // API port
+  ],
+  "extensions": ["streetsidesoftware.code-spell-checker"],
+  "features": {
+    "docker-in-docker": "latest",
+    "node": "16"
+  },
+  "onCreateCommand": "chmod 666 /var/run/docker.sock", // to run docker correctly
+  "postAttachCommand": "chown -R root /workspaces" // for permissions to be set correctly
+}
