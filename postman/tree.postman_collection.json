@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "43ffe42c-f8ec-4cc1-8055-12a2f6d04c84",
+		"_postman_id": "51cc5760-eaab-4f34-9b2e-1cb6393c33a1",
 		"name": "tree",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"data\": {\n        \"name\": \"e\"\n    },\n    \"parentId\": 1\n}",
+					"raw": "{\n    \"name\": \"test\",\n    \"parentId\": 1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,14 +20,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/tree/",
+					"raw": "http://localhost:3000/tree/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"tree",
 						""
 					]
@@ -82,7 +81,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/tree/descendants",
+					"raw": "http://localhost:3000/tree/descendants/:id",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -90,7 +89,14 @@
 					"port": "3000",
 					"path": [
 						"tree",
-						"descendants"
+						"descendants",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "0"
+						}
 					]
 				}
 			},
