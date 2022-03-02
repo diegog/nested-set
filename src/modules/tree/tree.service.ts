@@ -43,6 +43,7 @@ class treeService {
       if (!old) throw new Error(`Can't find node with given id`);
       if (!parent) throw new Error(`Can't find parent with given id`);
       if (old.height === 0) throw new Error(`Can't change parent of root`);
+      if (old.lft < parent.lft && old.rgt > parent.rgt) throw new Error(`Can't move node to one of it's descendants`)
 
       let oldPos = old.lft;
       const width = old.rgt - old.lft + 1; // width of the subtree being moved...
